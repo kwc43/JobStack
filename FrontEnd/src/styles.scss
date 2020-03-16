@@ -1,0 +1,39 @@
+@import "theme.scss";
+@import "variables.scss";
+@include angular-material-theme($jobstack-theme);
+@include angular-material-typography($jobstack-typography);
+
+html {height:100%;}
+body {color:$light-grey;min-height:100%;background-color:#fafafa}
+
+hr {border-top: 1px solid #cecece}
+
+.container {padding:1.5rem}
+
+h1 {font-size: 36px !important;
+    font-weight: 480 !important;}
+
+h4 {font-size: 16px;}
+
+.sub-title{color: $light-grey}
+
+.hero {text-align:center}
+.hero > .mat-display-2 {margin-bottom:10px}
+.hero > h2 {font-weight:300}
+
+mat-card-title{
+    color: $light-grey;
+    margin-bottom:2.25rem !important
+}
+
+.spinner-container {display: flex; align-items:center; justify-content: center}
+
+.ck-editor__editable_inline {
+    min-height: 120px !important;
+}
+
+mat-card {
+    padding-top:2.25rem  !important   
+}
+
+.access-token {background:#f0f0f0; border:solid 1px #999; padding: 1.2em; word-wrap: break-word;font-size:.85rem}

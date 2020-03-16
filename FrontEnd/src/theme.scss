@@ -1,0 +1,19 @@
+@import "~@angular/material/theming";
+
+@include mat-core();
+
+$jobstack-primary: mat-palette($mat-purple, 900);
+$jobstack-accent: mat-palette($mat-pink, A200, A100, A400);
+$jobstack-warn: mat-palette($mat-red);
+
+$jobstack-theme: mat-light-theme(
+    $jobstack-primary,
+    $jobstack-accent,
+    $jobstack-warn
+);
+
+$jobstack-typography: mat-typography-config(
+    $font-family: 'Roboto, monospace',
+    $headline: mat-typography-level(32px, 48px, 700),
+    $body-1: mat-typography-level(16px, 24px, 500)
+);
