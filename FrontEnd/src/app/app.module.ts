@@ -4,21 +4,21 @@ import { RouterModule, Routes} from '@angular/router';
 
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { HomeComponent } from './modules/home/home/home.component';
+import { HomeModule } from './modules/home/home.module';
 import { HeaderComponent } from './shared/header/header.component';
+import { AppRoutingModule } from './app-routing.module';
+import { MaterialModule } from './shared/materials/material.module';
 
 @NgModule({
-  declarations: [
-    AppComponent,
-    HeaderComponent,
-    HomeComponent
-  ],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
-    RouterModule.forRoot([
-      {path: '', component: HomeComponent}
-    ])
+    HomeModule,
+    AppRoutingModule,
+    MaterialModule
+  ],declarations: [
+    AppComponent,
+    HeaderComponent,
   ],
   bootstrap: [AppComponent]
 })

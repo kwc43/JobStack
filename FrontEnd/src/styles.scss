@@ -4,7 +4,7 @@
 @include angular-material-typography($jobstack-typography);
 
 html {height:100%;}
-body {color:$light-grey;min-height:100%;background-color:#fafafa}
+body {color:$light-grey;min-height:100%;background-color:#fafafa; margin:0}
 
 hr {border-top: 1px solid #cecece}
 
