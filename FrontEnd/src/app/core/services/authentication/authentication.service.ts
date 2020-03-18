@@ -10,8 +10,8 @@ import { BehaviorSubject } from 'rxjs';
 
 export class AuthenticationService extends BaseService {
 
-    private authNavStatusSource = new BehaviorSubject<boolean>(false);
-    authNavStatus$ = this.authNavStatusSource.asObservable();
+    private authenticationNavStatusSource = new BehaviorSubject<boolean>(false);
+    authenticationNavStatus$ = this.authenticationNavStatusSource.asObservable();
 
     private manager = new UserManager({
         authority: this.configService.authAppURI,
@@ -31,28 +31,45 @@ export class AuthenticationService extends BaseService {
 
       this.manager.getUser().then(user => {
           this.user = user;
-          this.authNavStatusSource.next(this.isAuthenticated());
+          this.authenticationNavStatusSource.next(this.isAuthenticated());
       });
   }
 
-    login(newAccount?: boolean, userName?: string){
+    async login(newAccount?: boolean, userName?: string){
       let extraQueryParams = newAccount && userName? {
         newAccount: newAccount,
         userName: userName
       } : {};
 
-      return this.manager.signinRedirect({
+      return await this.manager.signinRedirect({
         extraQueryParams
       });
     }
 
+    async signout(){
+      await this.manager.signoutRedirect();
+    }
+
     async completeAuthentication() {
       this.user = await this.manager.signinRedirectCallback();
-      this.authNavStatusSource.next(this.isAuthenticated());
+      this.authenticationNavStatusSource.next(this.isAuthenticated());
     }
 
     isAuthenticated():boolean {
       return this.user != null && !this.user.expired;
+    }
+    
+     get getAuthorizationHeaderValue(): string {
+
+        return this.user ? `${this.user.token_type} ${this.user.access_token}` : null;
+    }
+
+    get getRole(): string {
+      return this.user != null? this.user.profile["http://schemas.microsoft.com/ws/2008/06/identity/claims/role"] : '';
+    }
+
+    get getName(): string {
+      return this.user != null ? this.user.profile.name : '';
     }
 }
  

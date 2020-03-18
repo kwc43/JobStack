@@ -8,13 +8,15 @@ import { HomeModule } from './modules/home/home.module';
 import { HeaderComponent } from './shared/header/header.component';
 import { AppRoutingModule } from './app-routing.module';
 import { MaterialModule } from './shared/materials/material.module';
+import { CoreModule } from './core/coure.module';
 
 @NgModule({
   imports: [
+    AppRoutingModule,
     BrowserModule,
     BrowserAnimationsModule,
+    CoreModule,
     HomeModule,
-    AppRoutingModule,
     MaterialModule
   ],declarations: [
     AppComponent,
