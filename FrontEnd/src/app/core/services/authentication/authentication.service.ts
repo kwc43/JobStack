@@ -2,13 +2,13 @@ import { Injectable } from '@angular/core';
 import { UserManager, User} from 'oidc-client';
 import { BaseService } from '../base.service';
 import  { ConfigService } from '../configuration/config.service';
-import { BehaviourSubhect } from 'rxjs';
+import { BehaviorSubject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 
-export class AuthService extends BaseService {
+export class AuthenticationService extends BaseService {
 
     private authNavStatusSource = new BehaviorSubject<boolean>(false);
     authNavStatus$ = this.authNavStatusSource.asObservable();
@@ -24,8 +24,16 @@ export class AuthService extends BaseService {
         loadUserInfo: true
     });
 
-    constructor(){
-    }
+    private user: User | null;
+
+    constructor(private configService: ConfigService) {
+      super();
+
+      this.manager.getUser().then(user => {
+          this.user = user;
+          this.authNavStatusSource.next(this.isAuthenticated());
+      });
+  }
 
     login(newAccount?: boolean, userName?: string){
       let extraQueryParams = newAccount && userName? {
