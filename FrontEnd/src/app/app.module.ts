@@ -12,6 +12,7 @@ import { CoreModule } from './core/coure.module';
 import { SharedModule } from './shared/shared.module';
 import { AccountModule } from './modules/account/account.module';
 import { AccountService } from './core/services/account/account.service';
+import { AuthenticationCallbackComponent } from './authentication-callback/authentication-callback.component';
 
 @NgModule({
   imports: [
@@ -25,7 +26,8 @@ import { AccountService } from './core/services/account/account.service';
     SharedModule
   ],
   declarations: [
-    AppComponent
+    AppComponent,
+    AuthenticationCallbackComponent
   ],
   bootstrap: [AppComponent]
 })

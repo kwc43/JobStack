@@ -1,12 +1,12 @@
 import { Component, OnInit } from '@angular/core';
-import { AuthenticationService } from '../../core/services/authentication/authentication.service';
-import { ConfigService } from '../../core/services/configuration/config.service';
+import { AuthenticationService } from '../core/services/authentication/authentication.service';
+import { ConfigService } from '../core/services/configuration/config.service';
 import { Router } from '@angular/router';
 
 @Component({
-  selector: 'app-auth-callback',
-  templateUrl: './auth-callback.component.html',
-  styleUrls: ['./auth-callback.component.scss']
+  selector: 'app-authentication-callback',
+  templateUrl: './authentication-callback.component.html',
+  styleUrls: ['./authentication-callback.component.scss']
 })
 export class AuthenticationCallbackComponent implements OnInit {
 
@@ -14,6 +14,6 @@ export class AuthenticationCallbackComponent implements OnInit {
 
   async ngOnInit() {
     await this.authenticationService.completeAuthentication();
-    this.router.navigateByUrl("/home");
+    this.router.navigateByUrl('/home');    
   }
 }
